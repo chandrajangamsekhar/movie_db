@@ -1,0 +1,6 @@
+<% if params[:unmark] %>
+	alert("Movie Removed from Favourite List Successfull");
+<% else %>
+	alert("Movie Added To Favourite List Successfull");
+<% end %>	
+window.location.href = "/movies/favourite_movies"

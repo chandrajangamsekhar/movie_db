@@ -1,0 +1,42 @@
+<div class="container">
+  <div class="row">
+    <div class="col-lg-6">
+      <div class="card p-1"><img class="img-fluid" src="<%= @movie.medium_url %>"></div>
+    </div>
+    <div class="col-lg-6">
+     <div class="card">
+       <div class="card-header">
+         <h5 class="m-0">Movie Detail</h5>
+       </div>
+       <div class="card-body">
+         <ul class="list-unstyled">
+           <li class="d-flex mb-3">
+             <span class="w-30 pr-2"><strong>Name:</strong></span>
+             <span class="w-70"><%= @movie.name %></span>
+           </li>
+           <li class="d-flex mb-3">
+             <span class="w-30 pr-2"><strong>Genres:</strong></span>
+             <span class="w-70"><%= @movie.genres_text %></span>
+           </li>
+           <li class="d-flex mb-3">
+             <span class="w-30 pr-2"><strong>Movie Year:</strong></span>
+             <span class="w-70"><%= @movie.year %></span>
+           </li>
+           <li class="d-flex mb-3">
+             <span class="w-30 pr-2"><strong>Director:</strong></span>
+             <span class="w-70"><%= @movie.director %></span>
+           </li>
+           <li class="d-flex mb-3">
+             <span class="w-30 pr-2"><strong>Main Star:</strong></span>
+             <span class="w-70"><%= @movie.main_star %></span>
+           </li>
+           <li class="d-flex mb-3">
+             <span class="w-30 pr-2"><strong>Description:</strong></span>
+             <span class="w-70"><%= @movie.description %></span>
+           </li>
+         </ul>
+       </div>
+     </div>
+   </div>
+  </div>
+</div>

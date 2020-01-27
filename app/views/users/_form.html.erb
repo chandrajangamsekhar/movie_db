@@ -1,0 +1,25 @@
+<%= form_with(model: @user, remote: true) do |form| %>
+  <div class="modal-header">
+    <h5 class="modal-title" id="exampleModalLabel">Signin</h5>
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <div class="form-group username optional user_username">
+      <label class="form-control-label username optional" for="user_username">UserName</label>
+      <input class="form-control string username optional" autocomplete="username" autofocus="autofocus" type="text" value="" name="user[username]" id="user_username">
+      <% if @user.errors.any? %>
+        <div class="invalid-feedback" role="alert">
+          <% @user.errors.full_messages.each do |message| %>
+            <%= message %>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+    <button type="submit" class="btn btn-primary">Signin</button>
+  </div>
+<% end %>

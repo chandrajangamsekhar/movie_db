@@ -1,0 +1,40 @@
+<div class="container">
+  <h3 class="h3">Movie List </h3>
+  <div class="row panel-body" style="position:relative">
+    <% @movies.each do |movie| %>
+      <div class="col-md-3 col-sm-6"style="margin-bottom: 25px">
+        <div class="product-grid">
+          <div class="product-image">
+            <%= link_to movie_path(movie) do %>
+              <img class="pic-1" src="<%= movie.medium_url %>">
+            <% end %>
+          </div>
+          <ul class="rating">
+            <li class="fa fa-star"></li>
+            <li class="fa fa-star"></li>
+            <li class="fa fa-star"></li>
+            <li class="fa fa-star"></li>
+            <li class="fa fa-star disable"></li>
+          </ul>
+          <div class="product-content">
+            <h2 class="title"><a href="#">
+              <%= movie.name %>
+            </a></h2>
+            <div class="price">
+              Year: <%= movie.year %> - Director: <%= movie.director %>
+            </div>
+            <% if @user %>
+              <% if @favourite_movies && @favourite_movies.include?(movie.id)%>
+                <i class="fa fa-heart" aria-hidden="true"></i>
+              <% else %>
+                <%= link_to mark_favourite_movie_path(movie), remote: true, method: :put do %>
+                  <i class="fa fa-heart-o" aria-hidden="true"></i>
+                <% end %>
+              <% end %>
+            <% end %>      
+          </div>
+        </div>
+      </div>
+    <% end %>  
+  </div>
+</div>

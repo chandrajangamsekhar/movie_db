@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>MovieDb</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <a class="navbar-brand" href="#">Movies DB</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item">
+            <%= link_to movies_path, class: "nav-link" do %>
+              Movies
+            <% end %>  
+          </li>
+          <% if session[:username] %>
+            <li class="nav-item pull-right">
+              <%= link_to favourite_movies_movies_path, class: "nav-link" do %>
+                My Favourite Movies
+              <% end %>  
+            </li>
+          <% end %>  
+        </ul>
+        <ul class="navbar-nav mr-auto pull-right">
+          <% if session[:username].blank? %>
+            <li class="nav-item">
+              <%= link_to new_user_path, class: "nav-link", remote: true do %>
+                Login
+              <% end %>  
+            </li>
+          <% else %>
+            <li class="nav-item">
+              <%= link_to user_path(session[:userid]), class: "nav-link", remote: true, method: :delete do %>
+                Logout
+              <% end %>  
+            </li>
+          <% end %>
+        </ul>
+
+      </div>
+    </nav>
+    <%= yield %>
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+         
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
