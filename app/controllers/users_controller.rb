@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
-
+  skip_before_action :verify_authenticity_token
   # GET /users
   # GET /users.json
   def index
@@ -25,11 +25,13 @@ class UsersController < ApplicationController
   # POST /users.json
   def create
     @user = User.find_or_initialize_by(username: user_params[:username])
+    @user.guest = true
     respond_to do |format|
       if @user.save
         session[:username] = @user.username
         session[:userid] = @user.id
         format.js { render :create }
+        format.json { render json: {data: @user} }
       else
         format.js { render :new }
       end

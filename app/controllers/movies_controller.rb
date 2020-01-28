@@ -1,6 +1,6 @@
 class MoviesController < ApplicationController
   before_action :set_movie, only: [:show, :edit, :update, :destroy]
-
+  skip_before_action :verify_authenticity_token
   # GET /movies
   # GET /movies.json
   def index
@@ -17,10 +17,11 @@ class MoviesController < ApplicationController
 
   def mark_favourite
     if params[:unmark]
-      UserMovieLike.find_by(user_id: session[:userid], movie_id: params[:id]).destroy
+      UserMovieLike.find_by(user_id: @user.id, movie_id: params[:id]).destroy
     else
-      UserMovieLike.new(user_id: session[:userid], movie_id: params[:id]).save
-    end  
+      UserMovieLike.find_or_initialize_by(user_id: @user.id, movie_id: params[:id]).save
+    end
+    @favourite_movies = @user.movies
   end
 
   # GET /movies/1
